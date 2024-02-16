@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:zalada_flutter/modules/authentication/change_password/page/change_password_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/shipping_page.dart';
 import 'package:zalada_flutter/modules/profile/models/model_language.dart';
+import 'package:zalada_flutter/modules/profile/presenter/about_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/edite_profile_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/payment_method.dart';
+import 'package:zalada_flutter/modules/profile/presenter/privacy_policy_page.dart';
 import 'package:zalada_flutter/modules/profile/widgets/button_logout.dart';
 import 'package:zalada_flutter/modules/profile/widgets/item_language.dart';
 import 'package:zalada_flutter/modules/profile/widgets/item_profile.dart';
@@ -129,11 +132,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                     ),
                   ),
-                  ItemProfile(
-                    title: 'Account Security',
-                    icon: PhosphorIconsRegular.shieldCheck,
-                    onTap: () {},
-                  ),
                 ],
               ),
             ),
@@ -169,17 +167,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   ItemProfile(
                     title: 'Password',
                     icon: PhosphorIconsRegular.password,
-                    onTap: () {},
+                    onTap: () {
+                      context.push(ChangePasswordPage.routePath);
+                    },
                   ),
                   ItemProfile(
                     title: 'Privacy Policy',
                     icon: PhosphorIconsRegular.lockKey,
-                    onTap: () {},
+                    onTap: () {
+                      context.push(PrivacyPolicyPage.routePath);
+                    },
                   ),
                   ItemProfile(
                     title: 'About Us',
                     icon: PhosphorIconsRegular.info,
-                    onTap: () {},
+                    onTap: () {
+                      context.push(AboutPage.routePath);
+                    },
                   ),
                 ],
               ),
@@ -225,10 +229,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         }
                         listLanguage[index].isSelect = true;
                       }
-                      // for (var element in listCardAdd) {
-                      //   element.isSelect = false;
-                      // }
-                      // listLanguage[index].isSelect = true;
                     });
                     Navigator.pop(context);
                   },

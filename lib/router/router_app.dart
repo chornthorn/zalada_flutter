@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:zalada_flutter/modules/authentication/change_password/page/change_password_page.dart';
 import 'package:zalada_flutter/modules/authentication/forget_password/page/forget_password_page.dart';
 import 'package:zalada_flutter/modules/authentication/login/pages/login_page.dart';
 import 'package:zalada_flutter/modules/authentication/new_password/page/new_password.dart';
@@ -10,9 +11,11 @@ import 'package:zalada_flutter/modules/orders/presenter/orders_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/payment_method_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/shipping_page.dart';
 import 'package:zalada_flutter/modules/product/presenter/product_detail_page.dart';
+import 'package:zalada_flutter/modules/profile/presenter/about_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/add_payment_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/edite_profile_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/payment_method.dart';
+import 'package:zalada_flutter/modules/profile/presenter/privacy_policy_page.dart';
 import 'package:zalada_flutter/modules/splash/splash_page.dart';
 
 class AppRouter {
@@ -81,6 +84,18 @@ class AppRouter {
       GoRoute(
         path: AddPaymentPage.routePath,
         builder: (context, state) => AddPaymentPage(),
+      ),
+      GoRoute(
+        path: ChangePasswordPage.routePath,
+        builder: (context, state) => ChangePasswordPage(),
+      ),
+      GoRoute(
+        path: AboutPage.routePath,
+        builder: (context, state) => AboutPage(),
+      ),
+      GoRoute(
+        path: PrivacyPolicyPage.routePath,
+        builder: (context, state) => PrivacyPolicyPage(),
       ),
     ],
   );
