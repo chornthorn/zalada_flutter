@@ -1,53 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:zalada_flutter/components/lazy_list_view.dart';
+import 'package:zalada_flutter/modules/orders/presenter/payment_method_page.dart';
+import 'package:zalada_flutter/modules/orders/widgets/button_place_order.dart';
+import 'package:zalada_flutter/modules/orders/widgets/item_card.dart';
+import 'package:zalada_flutter/modules/orders/widgets/item_order.dart';
+import 'package:zalada_flutter/modules/product/widgets/payment_add_to_cart.dart';
+import 'package:zalada_flutter/shared/colors/app_color.dart';
+import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
+import 'package:zalada_flutter/shared/widgets/custom_app_bar.dart';
 
-import 'payment_method_page.dart';
 import 'shipping_page.dart';
 
-class OrdersPage extends StatelessWidget {
+class OrdersPage extends StatefulWidget {
   const OrdersPage({super.key});
+
+  static const routePath = '/orders';
+
+  @override
+  State<OrdersPage> createState() => _OrdersPageState();
+}
+
+class _OrdersPageState extends State<OrdersPage> {
+  bool isSelect = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              borderRadius: BorderRadius.circular(50),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(
-                    color: Colors.grey.withOpacity(0.5),
-                    width: 1,
-                  ),
-                ),
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  PhosphorIcons.arrowLeft(),
-                  color: Colors.black.withOpacity(0.9),
-                  size: 20,
-                ),
-              ),
-            ),
-            Spacer(),
-            Text('Orders'),
-            Spacer(),
-          ],
-        ),
-      ),
+      appBar: CustomAppBar(title: 'Order'),
       body: LazyListView(
         children: [
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+              vertical: AppSpacing.sm,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
             ),
@@ -58,22 +46,21 @@ class OrdersPage extends StatelessWidget {
                   children: [
                     Text(
                       'Address',
-                      style:
-                          Theme.of(context).textTheme.titleMedium!.copyWith(),
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
                     ),
                     Spacer(),
                     TextButton(
                       onPressed: () {
-                        final route = MaterialPageRoute(
-                          builder: (context) => ShippingPage(),
-                        );
-                        Navigator.push(context, route);
+                        context.push(AddressPage.routePath);
                       },
                       child: Text(
                         'Edit',
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: Theme.of(context).primaryColor,
-                              decoration: TextDecoration.underline,
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              color: AppColors.kColorBlue,
+                              fontWeight: FontWeight.w600,
                             ),
                       ),
                     ),
@@ -84,14 +71,17 @@ class OrdersPage extends StatelessWidget {
                   children: [
                     Text(
                       '🏠 Home',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
-                    SizedBox(height: 6),
+                    SizedBox(height: AppSpacing.sm),
                     Text(
                       'Terk Thla, Sen Sok, Phnom Penh, Cambodia, 12101',
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.black.withOpacity(0.9),
-                            fontWeight: FontWeight.w300,
+                            color: AppColors.kGreyColor,
+                            fontWeight: FontWeight.w400,
                           ),
                     ),
                   ],
@@ -99,9 +89,15 @@ class OrdersPage extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 4),
+          Divider(
+            color: AppColors.kColorGray200,
+            thickness: 4,
+          ),
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+              vertical: AppSpacing.sm,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
             ),
@@ -112,156 +108,31 @@ class OrdersPage extends StatelessWidget {
                   'Item',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                SizedBox(height: 16),
-                Row(
-                  children: [
-                    Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    SizedBox(width: 16),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Macbook Pro 15” 2019 - Intel core i7 - Grey',
-                            style:
-                                Theme.of(context).textTheme.bodySmall!.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(height: 5),
-                          Row(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    '\$1,999.00',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                          color: Theme.of(context).primaryColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    '\$2,499.00',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .copyWith(
-                                          color: Colors.black.withOpacity(0.5),
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                              Spacer(),
-                              Text(
-                                'x1',
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Divider(
-                  color: Colors.grey.withOpacity(0.2),
-                  height: 1,
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    SizedBox(width: 16),
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Macbook Pro 15” 2019 - Intel core i7 - Grey',
-                            style:
-                                Theme.of(context).textTheme.bodySmall!.copyWith(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(height: 5),
-                          Row(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    '\$1,999.00',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                          color: Theme.of(context).primaryColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    '\$2,499.00',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .copyWith(
-                                          color: Colors.black.withOpacity(0.5),
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                              Spacer(),
-                              Text(
-                                'x1',
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                SizedBox(height: AppSpacing.lg),
+                ...List.generate(
+                  3,
+                  (index) => ItemOrder(
+                    title: 'Apple Watch Series 9 GPS 45mm',
+                    image:
+                        'https://powermaccenter.com/cdn/shop/files/Apple_Watch_Series_9_GPS_45mm_Silver_Aluminum_Storm_Blue_Sport_Band_PDP_Image_Position-1__en-US_8d562dcd-6b02-4975-8a24-26b210107cec_1445x.jpg?v=1699527146',
+                    price: 1999.00,
+                    originalPrice: 2499.00,
+                    quantity: 1,
+                    index: 3 - index,
+                  ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 4),
+          Divider(
+            color: AppColors.kColorGray200,
+            thickness: 4,
+          ),
           // shipping
           Container(
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.white,
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+              vertical: AppSpacing.sm,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -270,23 +141,24 @@ class OrdersPage extends StatelessWidget {
                   'Shipping',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AppSpacing.md),
                 InkWell(
+                  borderRadius: BorderRadius.circular(AppSpacing.sm),
                   onTap: () {
                     final route = MaterialPageRoute(
-                      builder: (context) => ShippingPage(),
+                      builder: (context) => AddressPage(),
                     );
                     Navigator.push(context, route);
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(AppSpacing.sm),
                       border: Border.all(
                         color: Colors.grey.withOpacity(0.2),
                         width: 1,
                       ),
                     ),
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(AppSpacing.md),
                     child: Column(
                       children: [
                         Row(
@@ -294,9 +166,9 @@ class OrdersPage extends StatelessWidget {
                             Icon(
                               PhosphorIcons.truck(),
                               color: Theme.of(context).primaryColor,
-                              size: 20,
+                              size: AppSpacing.xlg,
                             ),
-                            SizedBox(width: 16),
+                            SizedBox(width: AppSpacing.md),
                             Text(
                               'J&T Express',
                               style: Theme.of(context).textTheme.bodyMedium,
@@ -305,7 +177,7 @@ class OrdersPage extends StatelessWidget {
                             Icon(
                               PhosphorIcons.caretRight(),
                               color: Colors.black,
-                              size: 20,
+                              size: AppSpacing.xlg,
                             ),
                           ],
                         ),
@@ -313,7 +185,7 @@ class OrdersPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AppSpacing.lg),
                 Row(
                   children: [
                     Text(
@@ -327,7 +199,7 @@ class OrdersPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AppSpacing.sm),
                 Row(
                   children: [
                     Text(
@@ -344,10 +216,15 @@ class OrdersPage extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 4),
-          // payment summary
+          Divider(
+            color: AppColors.kColorGray200,
+            thickness: 4,
+          ),
           Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+              vertical: AppSpacing.sm,
+            ),
             decoration: BoxDecoration(
               color: Colors.white,
             ),
@@ -358,71 +235,34 @@ class OrdersPage extends StatelessWidget {
                   'Payment Summary',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Text(
-                      'Subtotal',
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    Spacer(),
-                    Text(
-                      '\$3,998.00',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
+                const SizedBox(height: AppSpacing.md),
+                PaymentAddToCart(
+                  label: 'Subtotal',
+                  value: 3998.00,
                 ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Text(
-                      'Shipping Fee',
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    Spacer(),
-                    Text(
-                      '\$0.00',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
+                PaymentAddToCart(
+                  label: 'Shipping Fee',
+                  value: 30.00,
                 ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Text(
-                      'Discount',
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    Spacer(),
-                    Text(
-                      '-\$100.00',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
+                PaymentAddToCart(
+                  label: 'Discount',
+                  value: -100.00,
                 ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Text(
-                      'Total',
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    Spacer(),
-                    Text(
-                      '\$3,898.00',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ],
+                PaymentAddToCart(
+                  label: 'Total',
+                  value: 3998.00,
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 4),
-          // payment method
+          Divider(
+            color: AppColors.kColorGray200,
+            thickness: 4,
+          ),
           Container(
-            padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.white,
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+              vertical: AppSpacing.sm,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -432,101 +272,22 @@ class OrdersPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 16),
-                GestureDetector(
-                  onTap: () {
-                    final route = MaterialPageRoute(
-                      builder: (context) => PaymentMethodPage(),
-                    );
-                    Navigator.push(context, route);
+                ItemCard(
+                  name: 'Mastercard',
+                  image: 'assets/images/mastercard.png',
+                  code: '**** **** 1234',
+                  onPressed: () {
+                    context.push(PaymentMethodPage.routePath);
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.grey.withOpacity(0.2),
-                        width: 1,
-                      ),
-                    ),
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              PhosphorIcons.creditCard(),
-                              color: Theme.of(context).primaryColor,
-                              size: 20,
-                            ),
-                            SizedBox(width: 16),
-                            Text(
-                              'Visa **** 1234',
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            Spacer(),
-                            Icon(
-                              PhosphorIcons.caretRight(),
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
               ],
             ),
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.only(
-          left: 32,
-          right: 32,
-          bottom: 32,
-          top: 16,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              offset: Offset(0, -1),
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Text(
-              'Total: \$3,898.00',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Spacer(),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                elevation: 0,
-                foregroundColor: Colors.white,
-                backgroundColor: Theme.of(context).primaryColor,
-              ),
-              child: Row(
-                children: [
-                  Text('Place Order'),
-                  SizedBox(width: 8),
-                  Icon(
-                    PhosphorIcons.arrowRight(),
-                    size: 20,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+      bottomNavigationBar: ButtonPlaceOrder(
+        total: '3998.00',
+        onPressed: () {},
       ),
     );
   }

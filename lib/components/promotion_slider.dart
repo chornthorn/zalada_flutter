@@ -87,16 +87,16 @@ class _PromotionSliderState extends State<PromotionSlider> {
                   const Spacer(),
                   // Image
                   Container(
-                    height: 100,
-                    width: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: NetworkImage(
-                          'https://picsum.photos/250?image=11',
-                        ),
-                        fit: BoxFit.cover,
+                      color: Colors.red,
+                    ),
+                    child: Image(
+                      image: NetworkImage(
+                        'https://www.iplace.com.br/ccstore/v1/images/?source=/file/v7885850081771667442/products/222256.00-apple-iphone-14-pro-128gb-dourado-mq083be-a.jpg&height=475&width=475',
                       ),
+                      width: 120,
+                      height: 120,
                     ),
                   ),
                 ],

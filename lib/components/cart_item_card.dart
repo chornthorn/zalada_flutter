@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:zalada_flutter/modules/product/presenter/product_detail_page.dart';
+import 'package:zalada_flutter/shared/colors/app_color.dart';
+import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 
 class CartItemCard extends StatelessWidget {
   const CartItemCard({
@@ -9,9 +13,12 @@ class CartItemCard extends StatelessWidget {
     required this.price,
     required this.originalPrice,
     required this.quantity,
-    required this.onQuantityChanged,
     required this.onDelete,
     required this.selected,
+    required this.onDecrement,
+    required this.onIncrement,
+    this.onSelected,
+    this.index,
   });
 
   final String imageUrl;
@@ -19,150 +26,166 @@ class CartItemCard extends StatelessWidget {
   final double price;
   final double originalPrice;
   final int quantity;
-  final Function(int) onQuantityChanged;
   final Function() onDelete;
+  final Function(bool? value)? onSelected;
+  final VoidCallback onDecrement;
+  final VoidCallback onIncrement;
   final bool selected;
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        if (selected)
-          Container(
-            width: 24,
-            height: 24,
-            margin: const EdgeInsets.only(
-              right: 16,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.deepOrangeAccent,
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Icon(
-              PhosphorIcons.check(PhosphorIconsStyle.bold),
-              color: Colors.white,
-              size: 16,
-            ),
-          ),
-        if (!selected)
-          Container(
-            width: 24,
-            height: 24,
-            margin: const EdgeInsets.only(
-              right: 16,
-            ),
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.5),
-              ),
-            ),
-          ),
-        Container(
-          width: 120,
-          height: 120,
-          color: Color(0xffF3F6FB),
-          padding: const EdgeInsets.all(12),
-          child: Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(width: 16),
-        Flexible(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      margin: const EdgeInsets.only(
+        bottom: AppSpacing.md,
+      ),
+      child: Column(
+        children: [
+          Row(
             children: [
-              Text(title),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  Text(
-                    '\$$price',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    '\$$originalPrice',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
-                ],
+              Checkbox(
+                splashRadius: AppSpacing.lg,
+                activeColor: AppColors.kOrangeColor,
+                side: BorderSide(
+                  color: AppColors.kColorGray500,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppSpacing.xs),
+                ),
+                value: selected,
+                onChanged: onSelected,
               ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 28,
-                        width: 28,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.grey.withOpacity(0.5),
+              InkWell(
+                onTap: () {
+                  context.push(ProductDetailPage.routePath);
+                },
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: AppColors.kColorGray100,
+                    borderRadius: BorderRadius.circular(AppSpacing.md),
+                  ),
+                  padding: const EdgeInsets.all(AppSpacing.md),
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(width: AppSpacing.lg),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                      maxLines: 2,
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    Row(
+                      children: [
+                        Text(
+                          '\$$price',
+                          style:
+                              Theme.of(context).textTheme.titleSmall!.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        Text(
+                          '\$$originalPrice',
+                          style:
+                              Theme.of(context).textTheme.labelSmall!.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            InkWell(
+                              borderRadius: BorderRadius.circular(100),
+                              onTap: onDecrement,
+                              child: Container(
+                                padding: const EdgeInsets.all(AppSpacing.xs),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: AppColors.kColorGray500,
+                                  ),
+                                ),
+                                child: Icon(
+                                  PhosphorIcons.minus(),
+                                  size: AppSpacing.lg + 2,
+                                  color: AppColors.kPrimaryColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: AppSpacing.md),
+                            Text('$quantity'),
+                            const SizedBox(width: AppSpacing.md),
+                            InkWell(
+                              borderRadius: BorderRadius.circular(100),
+                              onTap: onIncrement,
+                              child: Container(
+                                padding: const EdgeInsets.all(AppSpacing.xs),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: AppColors.kColorGray500,
+                                  ),
+                                ),
+                                child: Icon(
+                                  PhosphorIcons.plus(),
+                                  size: AppSpacing.lg + 2,
+                                  color: AppColors.kPrimaryColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        // delete button
+                        InkWell(
+                          borderRadius: BorderRadius.circular(100),
+                          onTap: onDelete,
+                          child: Container(
+                            padding: const EdgeInsets.all(AppSpacing.xs),
+                            decoration: BoxDecoration(
+                              color: AppColors.kColorGray100,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              PhosphorIcons.trashSimple(),
+                              color: Colors.redAccent,
+                              size: AppSpacing.xlg,
                             ),
                           ),
-                          child: Icon(
-                            PhosphorIcons.minus(),
-                            size: 18,
-                            color: Colors.black.withOpacity(0.7),
-                          ),
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      Text('$quantity'),
-                      const SizedBox(width: 12),
-                      SizedBox(
-                        height: 28,
-                        width: 28,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.grey.withOpacity(0.5),
-                            ),
-                          ),
-                          child: Icon(
-                            PhosphorIcons.plus(),
-                            size: 18,
-                            color: Colors.black.withOpacity(0.7),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // delete button
-                  InkWell(
-                    onTap: onDelete,
-                    child: Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        PhosphorIcons.trashSimple(),
-                        color: Colors.redAccent,
-                        size: 22,
-                      ),
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              SizedBox(width: AppSpacing.lg),
             ],
           ),
-        ),
-      ],
+          const SizedBox(height: AppSpacing.md),
+          Divider(
+            color: AppColors.kColorGray300,
+            thickness: 1,
+          ),
+        ],
+      ),
     );
   }
 }

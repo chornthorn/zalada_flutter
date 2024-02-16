@@ -1,16 +1,19 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:zalada_flutter/components/bottom_nav_item.dart';
 import 'package:zalada_flutter/modules/home/presenter/home_page.dart';
-import 'package:animations/animations.dart';
 import 'package:zalada_flutter/modules/profile/presenter/profile_page.dart';
+import 'package:zalada_flutter/modules/wishlist/presenter/wishlist_page.dart';
 
 import '../../cart/presenter/cart_page.dart';
 import '../../search/presenter/search_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  static const routePath = '/';
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -20,10 +23,10 @@ class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin<MainPage> {
   int selectedIndex = 0;
 
-  final _pages = <Widget>[
+  final _pages = [
     const HomePage(),
     const SearchPage(),
-    const Placeholder(),
+    const WishListPage(),
     const CartPage(),
     const ProfilePage(),
   ];

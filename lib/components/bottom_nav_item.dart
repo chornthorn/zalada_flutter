@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 
 class BottomNavItem extends StatelessWidget {
   const BottomNavItem({
@@ -20,7 +21,7 @@ class BottomNavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(AppSpacing.sm),
       child: Container(
         constraints: BoxConstraints(
           minWidth: 68,
@@ -30,7 +31,7 @@ class BottomNavItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: selected ? Colors.grey[200] : Colors.transparent,
             shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(AppSpacing.sm),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -63,6 +64,7 @@ class BottomNavItem extends StatelessWidget {
                         color: selected
                             ? Theme.of(context).primaryColor
                             : Colors.grey[600],
+                        size: 24,
                       ),
                 const SizedBox(height: 3),
                 Text(

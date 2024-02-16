@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:zalada_flutter/components/product_card.dart';
-import 'package:zalada_flutter/shared/models/category.dart';
-import 'package:zalada_flutter/shared/models/product.dart';
-
-import '../../../components/lazy_list_view.dart';
+import 'package:zalada_flutter/modules/wishlist/widgets/custom_tab.dart';
+import 'package:zalada_flutter/modules/wishlist/widgets/tab_all.dart';
+import 'package:zalada_flutter/modules/wishlist/widgets/tab_laptop.dart';
+import 'package:zalada_flutter/modules/wishlist/widgets/tab_phone.dart';
+import 'package:zalada_flutter/shared/colors/app_color.dart';
+import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
+import 'package:zalada_flutter/shared/widgets/custom_text_form_field.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -13,13 +15,16 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends State<SearchPage>
+    with SingleTickerProviderStateMixin {
   late final TextEditingController _searchController;
+  late final TabController tabController;
 
   @override
   void initState() {
     super.initState();
     _searchController = TextEditingController();
+    tabController = TabController(length: 5, vsync: this);
   }
 
   @override
@@ -27,129 +32,103 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
+        toolbarHeight: 80,
+        backgroundColor: Colors.grey[50],
+        automaticallyImplyLeading: false,
         title: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(50),
-            border: Border.all(
-              color: Colors.grey.withOpacity(0.5),
-            ),
+          margin: const EdgeInsets.only(
+            top: AppSpacing.sm,
           ),
-          child: TextField(
+          child: CustomTextFieldForms(
             controller: _searchController,
-            onTapOutside: (value) {
-              FocusScope.of(context).unfocus();
-            },
-            decoration: InputDecoration(
-              hintText: 'Search laptop, phone, ...',
-              hintStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.normal,
-                  ),
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 12,
-              ),
-              prefixIcon: Icon(
-                PhosphorIcons.magnifyingGlass(),
-                color: Colors.grey,
-              ),
-              // clear icon if the search field is not empty
-              suffixIcon: _searchController.text.isNotEmpty
-                  ? IconButton(
-                      onPressed: () {
-                        _searchController.clear();
-                      },
-                      icon: Icon(
-                        PhosphorIcons.x(),
-                        color: Colors.grey,
-                      ),
-                    )
-                  : null,
+            hintText: 'Search for products',
+            prefixIcon: Icon(
+              PhosphorIconsRegular.magnifyingGlass,
+              color: Colors.grey,
+              size: AppSpacing.xlg,
             ),
+            suffixIcon: PhosphorIconsRegular.x,
           ),
         ),
       ),
-      body: SafeArea(
-        child: LazyListView(
-          cacheExtent: 1500,
-          children: [
-            const SizedBox(height: 16),
-            SizedBox(
-              height: 80,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(
-                      left: index == 0 ? 16 : 0,
-                      right: 12,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    constraints: BoxConstraints(
-                      minWidth: 80,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 6,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          radius: 20,
-                          backgroundColor: Colors.grey[200],
-                          child: Icon(
-                            categories[index].icon,
-                            color: Theme.of(context).primaryColor,
-                            size: 25,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          categories[index].name,
-                          style:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(
-                                    color: Colors.black,
-                                  ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: AppSpacing.sm),
+          SizedBox(
+            height: 44,
+            child: TabBar(
+              indicatorPadding: EdgeInsets.zero,
+              splashBorderRadius: BorderRadius.circular(AppSpacing.sm),
+              isScrollable: true,
+              controller: tabController,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              tabAlignment: TabAlignment.start,
+              indicator: BoxDecoration(
+                color: AppColors.kPrimaryColor,
+                borderRadius: BorderRadius.circular(AppSpacing.sm),
               ),
-            ),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
+              indicatorSize: TabBarIndicatorSize.label,
+              labelColor: AppColors.kWhiteColor,
+              unselectedLabelColor: AppColors.kPrimaryColor,
+              labelStyle: const TextStyle(
+                fontSize: AppSpacing.lg,
+                fontWeight: FontWeight.w600,
+                color: AppColors.kWhiteColor,
               ),
-              itemCount: Product.products.length,
-              padding: EdgeInsets.all(16),
-              itemBuilder: (context, index) {
-                return ProductCard(
-                  name: Product.products[index].name,
-                  imageUrl: 'https://picsum.photos/200/300?random=$index',
-                  originalPrice: Product.products[index].originalPrice,
-                  salePrice: Product.products[index].salePrice,
-                  rating: Product.products[index].rating,
-                  ratingCount: Product.products[index].ratingCount,
-                  soldCount: Product.products[index].soldCount,
-                  discount: Product.products[index].discount,
-                );
-              },
+              unselectedLabelStyle: const TextStyle(
+                fontSize: AppSpacing.lg,
+                fontWeight: FontWeight.w600,
+                color: AppColors.kPrimaryColor,
+              ),
+              tabs: [
+                Tab(
+                  child: CustomTab(
+                    title: 'All',
+                    icon: PhosphorIconsBold.dotsNine,
+                  ),
+                ),
+                Tab(
+                  child: CustomTab(
+                    title: 'Laptop💻',
+                    icon: PhosphorIconsBold.laptop,
+                  ),
+                ),
+                Tab(
+                  child: CustomTab(
+                    title: 'Phone📱',
+                    icon: PhosphorIconsBold.phone,
+                  ),
+                ),
+                Tab(
+                  child: CustomTab(
+                    title: 'Clothes',
+                    icon: PhosphorIconsBold.tShirt,
+                  ),
+                ),
+                Tab(
+                  child: CustomTab(
+                    title: 'Clothes',
+                    icon: PhosphorIconsBold.sneaker,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: tabController,
+              children: const [
+                TabAll(),
+                TabLaptop(),
+                TabPhone(),
+                TabLaptop(),
+                TabLaptop(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
