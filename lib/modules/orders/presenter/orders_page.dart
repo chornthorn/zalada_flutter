@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:zalada_flutter/components/lazy_list_view.dart';
+import 'package:zalada_flutter/modules/main/presenter/main_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/payment_method_page.dart';
 import 'package:zalada_flutter/modules/orders/widgets/button_place_order.dart';
 import 'package:zalada_flutter/modules/orders/widgets/item_card.dart';
@@ -10,8 +11,9 @@ import 'package:zalada_flutter/modules/product/widgets/payment_add_to_cart.dart'
 import 'package:zalada_flutter/shared/colors/app_color.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 import 'package:zalada_flutter/shared/widgets/custom_app_bar.dart';
+import 'package:zalada_flutter/shared/widgets/custom_bottom_sheet.dart';
 
-import 'shipping_page.dart';
+import 'address_page.dart';
 
 class OrdersPage extends StatefulWidget {
   const OrdersPage({super.key});
@@ -89,10 +91,7 @@ class _OrdersPageState extends State<OrdersPage> {
               ],
             ),
           ),
-          Divider(
-            color: AppColors.kColorGray200,
-            thickness: 4,
-          ),
+          Divider(color: AppColors.kColorGray200, thickness: 4),
           Container(
             padding: EdgeInsets.symmetric(
               horizontal: AppSpacing.lg,
@@ -124,10 +123,7 @@ class _OrdersPageState extends State<OrdersPage> {
               ],
             ),
           ),
-          Divider(
-            color: AppColors.kColorGray200,
-            thickness: 4,
-          ),
+          Divider(color: AppColors.kColorGray200, thickness: AppSpacing.xs),
           // shipping
           Container(
             padding: EdgeInsets.symmetric(
@@ -145,10 +141,7 @@ class _OrdersPageState extends State<OrdersPage> {
                 InkWell(
                   borderRadius: BorderRadius.circular(AppSpacing.sm),
                   onTap: () {
-                    final route = MaterialPageRoute(
-                      builder: (context) => AddressPage(),
-                    );
-                    Navigator.push(context, route);
+                    context.push(AddressPage.routePath);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -218,7 +211,7 @@ class _OrdersPageState extends State<OrdersPage> {
           ),
           Divider(
             color: AppColors.kColorGray200,
-            thickness: 4,
+            thickness: AppSpacing.xs,
           ),
           Container(
             padding: EdgeInsets.symmetric(
@@ -257,7 +250,7 @@ class _OrdersPageState extends State<OrdersPage> {
           ),
           Divider(
             color: AppColors.kColorGray200,
-            thickness: 4,
+            thickness: AppSpacing.xs,
           ),
           Container(
             padding: EdgeInsets.symmetric(
@@ -271,7 +264,7 @@ class _OrdersPageState extends State<OrdersPage> {
                   'Payment Method',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AppSpacing.lg),
                 ItemCard(
                   name: 'Mastercard',
                   image: 'assets/images/mastercard.png',
@@ -287,7 +280,18 @@ class _OrdersPageState extends State<OrdersPage> {
       ),
       bottomNavigationBar: ButtonPlaceOrder(
         total: '3998.00',
-        onPressed: () {},
+        onPressed: () {
+          CustomBottomSheet.successOrder(
+            context,
+            onGoHome: () {
+              context.go(MainPage.routePath);
+              pageController.jumpToPage(0);
+            },
+            onViewOrder: () {
+              context.pop();
+            },
+          );
+        },
       ),
     );
   }

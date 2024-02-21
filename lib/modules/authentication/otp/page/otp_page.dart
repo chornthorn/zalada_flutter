@@ -114,6 +114,7 @@ class _OTPPageState extends State<OTPPage> {
                     appContext: context,
                     length: 4,
                     obscureText: false,
+                    useExternalAutoFillGroup: true,
                     animationType: AnimationType.fade,
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,

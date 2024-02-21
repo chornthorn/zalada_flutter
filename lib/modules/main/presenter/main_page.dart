@@ -10,10 +10,12 @@ import 'package:zalada_flutter/modules/wishlist/presenter/wishlist_page.dart';
 import '../../cart/presenter/cart_page.dart';
 import '../../search/presenter/search_page.dart';
 
+late PageController pageController;
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
-  static const routePath = '/';
+  static const routePath = '/main-page';
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -56,19 +58,17 @@ class _MainPageState extends State<MainPage>
     },
   ];
 
-  late final PageController _pageController;
-
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    pageController = PageController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        controller: _pageController,
+        controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: _pages,
         onPageChanged: (index) {
@@ -103,7 +103,7 @@ class _MainPageState extends State<MainPage>
                   onPressed: () {
                     setState(() {
                       selectedIndex = index;
-                      _pageController.jumpToPage(index);
+                      pageController.jumpToPage(index);
                     });
                   },
                 );

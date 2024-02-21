@@ -19,49 +19,61 @@ class ItemProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(AppSpacing.sm),
-                decoration: BoxDecoration(
-                  color: AppColors.kColorGray200,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  icon,
-                  color: AppColors.kBlackColor,
-                  size: AppSpacing.xlg,
-                ),
-              ),
-              const SizedBox(width: AppSpacing.md),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
+    return Column(
+      children: [
+        InkWell(
+          borderRadius: BorderRadius.circular(AppSpacing.md),
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.only(
+              left: AppSpacing.md,
+              right: AppSpacing.md,
+              top: AppSpacing.sm,
+            ),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(AppSpacing.sm),
+                      decoration: BoxDecoration(
+                        color: AppColors.kColorGray200,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        icon,
+                        color: AppColors.kBlackColor,
+                        size: AppSpacing.xlg,
+                      ),
                     ),
-              ),
-              const Spacer(),
-              trailing ?? const SizedBox(),
-              if (trailing == null)
-                Icon(
-                  PhosphorIconsRegular.caretRight,
-                  color: AppColors.kBlackColor,
-                  size: AppSpacing.xlg,
+                    const SizedBox(width: AppSpacing.md),
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          ),
+                    ),
+                    const Spacer(),
+                    trailing ?? const SizedBox(),
+                    if (trailing == null)
+                      Icon(
+                        PhosphorIconsRegular.caretRight,
+                        color: AppColors.kBlackColor,
+                        size: AppSpacing.xlg,
+                      ),
+                  ],
                 ),
-            ],
+                const SizedBox(height: AppSpacing.sm - 2),
+                const Divider(
+                  color: AppColors.kColorGray300,
+                  thickness: 1,
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: AppSpacing.sm),
-          Divider(
-            color: AppColors.kColorGray300,
-            thickness: .5,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:zalada_flutter/modules/authentication/change_password/page/change_password_page.dart';
-import 'package:zalada_flutter/modules/orders/presenter/shipping_page.dart';
+import 'package:zalada_flutter/modules/orders/presenter/address_page.dart';
 import 'package:zalada_flutter/modules/profile/models/model_language.dart';
 import 'package:zalada_flutter/modules/profile/presenter/about_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/edite_profile_page.dart';
@@ -24,15 +24,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  bool isSwitched = false;
+  bool isSwitched = true;
   bool isSelect = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kBackgroundColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.kBackgroundColor,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,16 +84,17 @@ class _ProfilePageState extends State<ProfilePage> {
             MyOrders(
               onTap: () {},
             ),
-            SizedBox(height: AppSpacing.xs),
+            Divider(
+              color: AppColors.kColorGray200,
+              thickness: 4,
+            ),
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.lg,
+                horizontal: AppSpacing.md,
                 vertical: AppSpacing.sm,
               ),
-              decoration: BoxDecoration(
-                color: AppColors.kWhiteColor,
-              ),
+              decoration: BoxDecoration(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -135,15 +136,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            const SizedBox(height: AppSpacing.xs),
+            Divider(
+              color: AppColors.kColorGray200,
+              thickness: 4,
+            ),
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.lg,
+                horizontal: AppSpacing.md,
                 vertical: AppSpacing.sm,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.kWhiteColor,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +189,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            const SizedBox(height: AppSpacing.xs),
+            Divider(
+              color: AppColors.kColorGray200,
+              thickness: 4,
+            ),
             ButtonLogOut(
               onTap: () {},
             )

@@ -13,41 +13,42 @@ class ButtonLogOut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.lg,
-          vertical: AppSpacing.sm,
-        ),
-        decoration: BoxDecoration(
-          color: AppColors.kWhiteColor,
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(AppSpacing.sm),
-              decoration: BoxDecoration(
-                color: AppColors.kColorGray200,
-                shape: BoxShape.circle,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppSpacing.sm),
+        onTap: onTap,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xs,
+            vertical: AppSpacing.sm,
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(AppSpacing.sm),
+                decoration: BoxDecoration(
+                  color: AppColors.kColorGray200,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  PhosphorIconsRegular.signOut,
+                  color: AppColors.kRedColor,
+                  size: AppSpacing.xlg,
+                ),
               ),
-              child: Icon(
-                PhosphorIconsRegular.signOut,
-                color: AppColors.kRedColor,
-                size: AppSpacing.xlg,
+              const SizedBox(width: AppSpacing.md),
+              Text(
+                'Logout',
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: AppColors.kRedColor,
+                    ),
               ),
-            ),
-            const SizedBox(width: AppSpacing.md),
-            Text(
-              'Logout',
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: AppColors.kRedColor,
-                  ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

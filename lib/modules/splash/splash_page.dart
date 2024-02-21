@@ -7,7 +7,7 @@ import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
-  static const routePath = '/h';
+  static const routePath = '/';
 
   @override
   State<SplashPage> createState() => _SplashPageState();

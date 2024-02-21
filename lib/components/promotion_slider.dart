@@ -93,7 +93,7 @@ class _PromotionSliderState extends State<PromotionSlider> {
                     ),
                     child: Image(
                       image: NetworkImage(
-                        'https://www.iplace.com.br/ccstore/v1/images/?source=/file/v7885850081771667442/products/222256.00-apple-iphone-14-pro-128gb-dourado-mq083be-a.jpg&height=475&width=475',
+                        'https://cdn.media.amplience.net/i/sd/23SEP0074-BA-home-tab-iphone',
                       ),
                       width: 120,
                       height: 120,

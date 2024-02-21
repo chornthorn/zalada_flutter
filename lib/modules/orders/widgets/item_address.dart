@@ -38,7 +38,7 @@ class ItemAddress extends StatelessWidget {
               color: isSelected!
                   ? AppColors.kOrangeColor
                   : Colors.black.withOpacity(0.1),
-              width: 1,
+              width: 1.5,
             ),
           ),
           child: Column(
@@ -60,7 +60,7 @@ class ItemAddress extends StatelessWidget {
                               ),
                               padding: EdgeInsets.all(AppSpacing.sm),
                               child: Icon(
-                                PhosphorIcons.houseLine(),
+                                PhosphorIconsRegular.mapPinLine,
                                 color: Colors.black.withOpacity(0.5),
                                 size: AppSpacing.xlg,
                               ),

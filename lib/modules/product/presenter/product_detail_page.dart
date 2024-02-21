@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:zalada_flutter/modules/authentication/widgets/label_text.dart';
+import 'package:zalada_flutter/modules/main/presenter/main_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/orders_page.dart';
 import 'package:zalada_flutter/modules/product/models/model_detail.dart';
 import 'package:zalada_flutter/modules/product/widgets/add_to_cart.dart';
@@ -77,7 +78,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           title: '',
           child: InkWell(
             borderRadius: BorderRadius.circular(100),
-            onTap: () {},
+            onTap: () {
+              context.pop();
+              pageController.jumpToPage(3);
+              print('Go to cart');
+            },
             child: Container(
               padding: const EdgeInsets.all(AppSpacing.sm),
               decoration: BoxDecoration(

@@ -161,8 +161,10 @@ class _AddPaymentPageState extends State<AddPaymentPage> {
             bottom: AppSpacing.xlg,
           ),
           child: CustomElevated(
-            text: 'Add Card',
-            onPressed: () {},
+            text: 'Add Payment',
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
         ),
       ),

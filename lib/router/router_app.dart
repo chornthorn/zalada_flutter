@@ -6,10 +6,11 @@ import 'package:zalada_flutter/modules/authentication/new_password/page/new_pass
 import 'package:zalada_flutter/modules/authentication/otp/page/otp_page.dart';
 import 'package:zalada_flutter/modules/authentication/register/page/register_page.dart';
 import 'package:zalada_flutter/modules/main/presenter/main_page.dart';
+import 'package:zalada_flutter/modules/notifications/pages/notification_page.dart';
 import 'package:zalada_flutter/modules/onboarding/presenter/onboarding_page.dart';
+import 'package:zalada_flutter/modules/orders/presenter/address_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/orders_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/payment_method_page.dart';
-import 'package:zalada_flutter/modules/orders/presenter/shipping_page.dart';
 import 'package:zalada_flutter/modules/product/presenter/product_detail_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/about_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/add_payment_page.dart';
@@ -96,6 +97,10 @@ class AppRouter {
       GoRoute(
         path: PrivacyPolicyPage.routePath,
         builder: (context, state) => PrivacyPolicyPage(),
+      ),
+      GoRoute(
+        path: NotificationPage.routePath,
+        builder: (context, state) => NotificationPage(),
       ),
     ],
   );

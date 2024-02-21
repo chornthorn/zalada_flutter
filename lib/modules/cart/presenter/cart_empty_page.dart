@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zalada_flutter/modules/main/presenter/main_page.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 import 'package:zalada_flutter/shared/widgets/custom_elevated.dart';
 
@@ -36,7 +37,9 @@ class CartEmptyPage extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.lg),
           CustomElevated(
-            onPressed: () {},
+            onPressed: () {
+              pageController.jumpToPage(0);
+            },
             text: 'Start Shopping',
           ),
           SizedBox(height: AppSpacing.xs),

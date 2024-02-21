@@ -15,7 +15,15 @@ class MyOrders extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
-        color: AppColors.kWhiteColor,
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.kColorGray200,
+            spreadRadius: 1,
+            blurRadius: 5,
+            offset: const Offset(0, -2),
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -165,7 +173,6 @@ class MyOrders extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: AppSpacing.md),
         ],
       ),
     );
