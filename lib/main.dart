@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-
-import 'modules/main/presenter/main_page.dart';
+import 'package:flutter/services.dart';
+import 'package:zalada_flutter/router/router_app.dart';
+import 'package:zalada_flutter/shared/colors/app_theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const App());
 }
 
@@ -11,13 +17,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        scaffoldBackgroundColor: Colors.grey[100],
-      ),
-      home: const MainPage(),
+      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
+      routerConfig: AppRouter.routerConfig,
     );
   }
 }
