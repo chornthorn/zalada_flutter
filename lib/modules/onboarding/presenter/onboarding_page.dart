@@ -71,7 +71,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               top: AppSpacing.xs,
             ),
             child: TextButton(
-              onPressed: currentIndex == 2 ? null : () {},
+              onPressed: currentIndex == 2
+                  ? null
+                  : () {
+                      context.push(LoginPage.routePath);
+                    },
               child: Text(
                 currentIndex == 2 ? '' : 'Skip',
               ),

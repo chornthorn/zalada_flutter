@@ -30,6 +30,7 @@ class _WishListPageState extends State<WishListPage>
       backgroundColor: AppColors.kWhiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.kWhiteColor,
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           'YourWishlist',

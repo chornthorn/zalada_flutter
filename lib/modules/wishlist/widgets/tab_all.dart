@@ -17,7 +17,7 @@ class _TabAllState extends State<TabAll> {
       padding: const EdgeInsets.all(AppSpacing.lg),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: _checkResponsiveCrossAxisCount(context),
-        crossAxisSpacing: 16,
+        crossAxisSpacing: 14,
         mainAxisSpacing: 16,
         childAspectRatio: _checkResponsiveChildAspectRatio(context),
       ),

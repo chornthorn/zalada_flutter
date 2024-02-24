@@ -5,6 +5,8 @@ import 'package:zalada_flutter/modules/authentication/login/pages/login_page.dar
 import 'package:zalada_flutter/modules/authentication/new_password/page/new_password.dart';
 import 'package:zalada_flutter/modules/authentication/otp/page/otp_page.dart';
 import 'package:zalada_flutter/modules/authentication/register/page/register_page.dart';
+import 'package:zalada_flutter/modules/home/presenter/hot_deals_see_all_page.dart';
+import 'package:zalada_flutter/modules/home/presenter/see_all_categories_page.dart';
 import 'package:zalada_flutter/modules/main/presenter/main_page.dart';
 import 'package:zalada_flutter/modules/notifications/pages/notification_page.dart';
 import 'package:zalada_flutter/modules/onboarding/presenter/onboarding_page.dart';
@@ -101,6 +103,14 @@ class AppRouter {
       GoRoute(
         path: NotificationPage.routePath,
         builder: (context, state) => NotificationPage(),
+      ),
+      GoRoute(
+        path: HotDealSeeAllPage.routePath,
+        builder: (context, state) => HotDealSeeAllPage(),
+      ),
+      GoRoute(
+        path: SeeAllCategoriesPage.routePath,
+        builder: (context, state) => SeeAllCategoriesPage(),
       ),
     ],
   );
