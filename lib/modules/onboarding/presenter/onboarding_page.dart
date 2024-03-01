@@ -39,7 +39,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       appBar: AppBar(
         backgroundColor: AppColors.kBackgroundColor,
         elevation: 0,
-        toolbarHeight: 65,
+        toolbarHeight: 55,
         leadingWidth: 80,
         leading: Padding(
           padding: const EdgeInsets.only(

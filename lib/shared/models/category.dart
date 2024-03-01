@@ -15,8 +15,11 @@ class Category {
 }
 
 final List<Category> categories = [
-  Category(name: 'Electronics', icon: PhosphorIcons.phone()),
-  Category(name: 'Accessories', icon: PhosphorIcons.laptop()),
-  Category(name: 'Clothing', icon: PhosphorIcons.tShirt()),
-  Category(name: 'Shoes', icon: PhosphorIcons.sneaker()),
+  Category(name: 'Phone', icon: PhosphorIcons.deviceMobile()),
+  Category(name: 'Computers', icon: PhosphorIcons.laptop()),
+  Category(name: 'Speakers', icon: PhosphorIcons.speakerHifi()),
+  Category(name: 'Monitor', icon: PhosphorIcons.monitor()),
+  Category(name: 'HeadPhone', icon: PhosphorIcons.headphones()),
+  Category(name: 'Mouses', icon: PhosphorIcons.mouse()),
+  Category(name: 'Microphone', icon: PhosphorIcons.microphone()),
 ];

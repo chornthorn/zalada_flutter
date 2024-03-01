@@ -109,6 +109,7 @@ class _OTPPageState extends State<OTPPage> {
                 Form(
                   key: formKey,
                   child: PinCodeTextField(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     keyboardType: TextInputType.number,
                     controller: otpController,
                     appContext: context,
@@ -141,14 +142,14 @@ class _OTPPageState extends State<OTPPage> {
                     const SizedBox(width: AppSpacing.sm),
                     if (enableResend)
                       InkWell(
-                        borderRadius: BorderRadius.circular(AppSpacing.md),
+                        borderRadius: BorderRadius.circular(AppSpacing.lg),
                         onTap: _resendCode,
                         child: Text(
                           ' Resend ',
                           style:
                               Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.kPrimaryColor,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.kOrangeColor,
                                   ),
                         ),
                       ),

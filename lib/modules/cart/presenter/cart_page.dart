@@ -117,7 +117,7 @@ class _CartPageState extends State<CartPage>
                   originalPrice: item.originalPrice,
                   quantity: item.quantity,
                   onDelete: () {
-                    removeItem(index);
+                    _showDialogConfirmDelete(context, index: index);
                   },
                   selected: item.selected,
                   onDecrement: () {
@@ -203,6 +203,60 @@ class _CartPageState extends State<CartPage>
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _showDialogConfirmDelete(
+    BuildContext context, {
+    required int index,
+  }) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Center(
+            child: Text(
+              'Delete Product',
+              style: TextStyle(
+                color: AppColors.kPrimaryColor,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                Text(
+                  'Are you sure you want to delete this item?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text(
+                'Delete',
+                style: TextStyle(color: Colors.red),
+              ),
+              onPressed: () {
+                removeItem(index);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

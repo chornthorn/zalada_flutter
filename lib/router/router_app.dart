@@ -19,6 +19,7 @@ import 'package:zalada_flutter/modules/profile/presenter/add_payment_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/edite_profile_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/payment_method.dart';
 import 'package:zalada_flutter/modules/profile/presenter/privacy_policy_page.dart';
+import 'package:zalada_flutter/modules/profile/presenter/view_order_page.dart';
 import 'package:zalada_flutter/modules/splash/splash_page.dart';
 
 class AppRouter {
@@ -111,6 +112,10 @@ class AppRouter {
       GoRoute(
         path: SeeAllCategoriesPage.routePath,
         builder: (context, state) => SeeAllCategoriesPage(),
+      ),
+      GoRoute(
+        path: ViewOrderPage.routePath,
+        builder: (context, state) => ViewOrderPage(),
       ),
     ],
   );
