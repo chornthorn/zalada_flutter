@@ -26,10 +26,12 @@ class _EditeProfilePageState extends State<EditeProfilePage> {
 
   @override
   void initState() {
-    fullNameController = TextEditingController();
-    emailController = TextEditingController();
-    phoneNumberController = TextEditingController();
-    dateOfBirthController = TextEditingController();
+    fullNameController = TextEditingController(text: 'Rosé');
+    emailController = TextEditingController(text: 'thoenchorn@gmail.com');
+    phoneNumberController = TextEditingController(text: '081234567890');
+    dateOfBirthController = TextEditingController(text: '1997-02-11');
+    genderController = TextEditingController(text: 'Female');
+
     super.initState();
   }
 
@@ -40,6 +42,7 @@ class _EditeProfilePageState extends State<EditeProfilePage> {
     emailController.dispose();
     phoneNumberController.dispose();
     dateOfBirthController.dispose();
+    genderController.dispose();
   }
 
   String? selectedGender;
@@ -95,6 +98,7 @@ class _EditeProfilePageState extends State<EditeProfilePage> {
                   LabelText(label: 'Full Name'),
                   const SizedBox(height: AppSpacing.xs),
                   CustomTextFieldForms(
+                    controller: fullNameController,
                     hintText: 'Enter your full name',
                     keyboardType: TextInputType.name,
                   ),
@@ -103,7 +107,8 @@ class _EditeProfilePageState extends State<EditeProfilePage> {
                   const SizedBox(height: AppSpacing.xs),
                   CustomTextFieldForms(
                     hintText: 'Enter your email',
-                    keyboardType: TextInputType.name,
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(height: AppSpacing.md),
                   LabelText(label: 'Date of Birth'),
@@ -119,6 +124,7 @@ class _EditeProfilePageState extends State<EditeProfilePage> {
                   const SizedBox(height: AppSpacing.xs),
                   CustomTextFieldForms(
                     hintText: 'Enter your phone number',
+                    controller: phoneNumberController,
                     keyboardType: TextInputType.phone,
                   ),
                   const SizedBox(height: AppSpacing.md),
@@ -134,6 +140,7 @@ class _EditeProfilePageState extends State<EditeProfilePage> {
                     child: CustomTextFieldForms(
                       hintText: 'Select your gender',
                       enable: false,
+                      controller: genderController,
                       suffixIcon: PhosphorIconsRegular.caretDown,
                       onPressed: () {
                         DropdownMenuItem<String>(

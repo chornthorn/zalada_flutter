@@ -47,10 +47,10 @@ class ProductCard extends StatelessWidget {
                 color: AppColors.kWhiteColor,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.kGreyColor.withOpacity(0.2),
+                    color: AppColors.kColorGray200,
                     spreadRadius: 1,
-                    blurRadius: 6,
-                    offset: const Offset(0, 6),
+                    blurRadius: 4,
+                    offset: const Offset(0, 4),
                   ),
                 ],
                 borderRadius: BorderRadius.circular(AppSpacing.lg),

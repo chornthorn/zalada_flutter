@@ -66,15 +66,16 @@ class CustomBottomSheet {
   }) async {
     return showModalBottomSheet(
       isDismissible: false,
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.6,
-      ),
       enableDrag: false,
       transitionAnimationController: AnimationController(
         vsync: Navigator.of(context),
         duration: Duration(milliseconds: 300),
       )..forward(),
       context: context,
+      constraints: BoxConstraints(
+        maxHeight: 450,
+      ),
+      isScrollControlled: true,
       builder: (context) {
         return Container(
           width: double.infinity,

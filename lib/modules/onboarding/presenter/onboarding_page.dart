@@ -39,7 +39,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       appBar: AppBar(
         backgroundColor: AppColors.kBackgroundColor,
         elevation: 0,
-        toolbarHeight: 65,
+        toolbarHeight: 55,
         leadingWidth: 80,
         leading: Padding(
           padding: const EdgeInsets.only(
@@ -71,7 +71,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               top: AppSpacing.xs,
             ),
             child: TextButton(
-              onPressed: currentIndex == 2 ? null : () {},
+              onPressed: currentIndex == 2
+                  ? null
+                  : () {
+                      context.push(LoginPage.routePath);
+                    },
               child: Text(
                 currentIndex == 2 ? '' : 'Skip',
               ),
