@@ -189,7 +189,7 @@ class _CartPageState extends State<CartPage>
         mainAxisSize: MainAxisSize.min,
         children: [
           AnimatedContainer(
-            duration: const Duration(milliseconds: 400),
+            duration: const Duration(milliseconds: 300),
             height: cartItems.where((element) => element.selected).isNotEmpty
                 ? 60
                 : 0,
@@ -232,6 +232,7 @@ class _CartPageState extends State<CartPage>
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],

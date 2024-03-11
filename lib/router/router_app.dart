@@ -11,6 +11,7 @@ import 'package:zalada_flutter/modules/main/presenter/main_page.dart';
 import 'package:zalada_flutter/modules/notifications/pages/notification_page.dart';
 import 'package:zalada_flutter/modules/onboarding/presenter/onboarding_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/address_page.dart';
+import 'package:zalada_flutter/modules/orders/presenter/edit_address_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/orders_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/payment_method_page.dart';
 import 'package:zalada_flutter/modules/product/presenter/product_detail_page.dart';
@@ -116,6 +117,10 @@ class AppRouter {
       GoRoute(
         path: ViewOrderPage.routePath,
         builder: (context, state) => ViewOrderPage(),
+      ),
+      GoRoute(
+        path: EditAddressPage.routePath,
+        builder: (context, state) => EditAddressPage(),
       ),
     ],
   );

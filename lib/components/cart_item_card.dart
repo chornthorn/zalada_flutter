@@ -5,6 +5,8 @@ import 'package:zalada_flutter/modules/product/presenter/product_detail_page.dar
 import 'package:zalada_flutter/shared/colors/app_color.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 
+import '../shared/widgets/number_animated.dart';
+
 class CartItemCard extends StatelessWidget {
   const CartItemCard({
     super.key,
@@ -132,7 +134,7 @@ class CartItemCard extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: AppSpacing.md),
-                            Text('$quantity'),
+                            NumberAnimated(quantity: quantity),
                             const SizedBox(width: AppSpacing.md),
                             InkWell(
                               borderRadius: BorderRadius.circular(100),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zalada_flutter/shared/colors/app_color.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
+import 'package:zalada_flutter/shared/widgets/number_animated.dart';
 
 class CustomCheckoutButton extends StatelessWidget {
   const CustomCheckoutButton({
@@ -62,14 +63,9 @@ class CustomCheckoutButton extends StatelessWidget {
                         color: AppColors.kGreyColor,
                         shape: BoxShape.circle,
                       ),
-                      child: Text(
-                        quantity!.toString(),
-                        style:
-                            Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
+                      child: NumberAnimated(
+                        quantity: quantity!,
+                        color: AppColors.kWhiteColor,
                       ),
                     ),
                 ],
