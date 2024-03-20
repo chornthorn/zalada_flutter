@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:zalada_flutter/components/lazy_list_view.dart';
 import 'package:zalada_flutter/modules/orders/models/models_card.dart';
+import 'package:zalada_flutter/modules/orders/presenter/edit_address_page.dart';
 import 'package:zalada_flutter/modules/orders/widgets/item_address.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 import 'package:zalada_flutter/shared/widgets/custom_app_bar.dart';
@@ -43,7 +45,9 @@ class _AddressPageState extends State<AddressPage> {
                     listAddress[index].isSelected = true;
                   });
                 },
-                onEdit: () {},
+                onEdit: () {
+                  context.push(EditAddressPage.routePath);
+                },
               ),
             ),
           ],

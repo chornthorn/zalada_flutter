@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:zalada_flutter/modules/authentication/change_password/page/change_password_page.dart';
+import 'package:zalada_flutter/modules/authentication/login/pages/login_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/address_page.dart';
 import 'package:zalada_flutter/modules/profile/models/model_language.dart';
 import 'package:zalada_flutter/modules/profile/presenter/about_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/edite_profile_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/payment_method.dart';
 import 'package:zalada_flutter/modules/profile/presenter/privacy_policy_page.dart';
+import 'package:zalada_flutter/modules/profile/presenter/view_order_page.dart';
 import 'package:zalada_flutter/modules/profile/widgets/button_logout.dart';
 import 'package:zalada_flutter/modules/profile/widgets/item_language.dart';
 import 'package:zalada_flutter/modules/profile/widgets/item_profile.dart';
@@ -82,7 +84,11 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const SizedBox(height: AppSpacing.lg),
             MyOrders(
-              onTap: () {},
+              onTap: () {
+                context.push(ViewOrderPage.routePath,
+                  extra: '2'
+                );
+              },
             ),
             Divider(
               color: AppColors.kColorGray200,
@@ -194,11 +200,44 @@ class _ProfilePageState extends State<ProfilePage> {
               thickness: 4,
             ),
             ButtonLogOut(
-              onTap: () {},
+              onTap: () {
+                _showDialogLogout();
+              },
             )
           ],
         ),
       ),
+    );
+  }
+
+  void _showDialogLogout() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Log out'),
+          content: Text('Are you sure you want to log out?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                context.go(LoginPage.routePath);
+              },
+              child: Text(
+                'Log out',
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 

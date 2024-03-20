@@ -5,10 +5,14 @@ import 'package:zalada_flutter/modules/authentication/login/pages/login_page.dar
 import 'package:zalada_flutter/modules/authentication/new_password/page/new_password.dart';
 import 'package:zalada_flutter/modules/authentication/otp/page/otp_page.dart';
 import 'package:zalada_flutter/modules/authentication/register/page/register_page.dart';
+import 'package:zalada_flutter/modules/home/presenter/detail_category_page.dart';
+import 'package:zalada_flutter/modules/home/presenter/hot_deals_see_all_page.dart';
+import 'package:zalada_flutter/modules/home/presenter/see_all_categories_page.dart';
 import 'package:zalada_flutter/modules/main/presenter/main_page.dart';
 import 'package:zalada_flutter/modules/notifications/pages/notification_page.dart';
 import 'package:zalada_flutter/modules/onboarding/presenter/onboarding_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/address_page.dart';
+import 'package:zalada_flutter/modules/orders/presenter/edit_address_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/orders_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/payment_method_page.dart';
 import 'package:zalada_flutter/modules/product/presenter/product_detail_page.dart';
@@ -17,6 +21,7 @@ import 'package:zalada_flutter/modules/profile/presenter/add_payment_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/edite_profile_page.dart';
 import 'package:zalada_flutter/modules/profile/presenter/payment_method.dart';
 import 'package:zalada_flutter/modules/profile/presenter/privacy_policy_page.dart';
+import 'package:zalada_flutter/modules/profile/presenter/view_order_page.dart';
 import 'package:zalada_flutter/modules/splash/splash_page.dart';
 
 class AppRouter {
@@ -102,6 +107,30 @@ class AppRouter {
         path: NotificationPage.routePath,
         builder: (context, state) => NotificationPage(),
       ),
+      GoRoute(
+        path: HotDealSeeAllPage.routePath,
+        builder: (context, state) => HotDealSeeAllPage(),
+      ),
+      GoRoute(
+        path: SeeAllCategoriesPage.routePath,
+        builder: (context, state) => SeeAllCategoriesPage(),
+      ),
+      GoRoute(
+          path: ViewOrderPage.routePath,
+          builder: (context, state) {
+            final type = state.extra;
+            return ViewOrderPage(type: type as String);
+          }),
+      GoRoute(
+        path: EditAddressPage.routePath,
+        builder: (context, state) => EditAddressPage(),
+      ),
+      GoRoute(
+          path: DetailCategoryPage.routePath,
+          builder: (context, state) {
+            final title = state.extra;
+            return DetailCategoryPage(title: title as String);
+          }),
     ],
   );
 }

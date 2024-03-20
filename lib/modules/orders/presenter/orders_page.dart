@@ -8,6 +8,7 @@ import 'package:zalada_flutter/modules/orders/widgets/button_place_order.dart';
 import 'package:zalada_flutter/modules/orders/widgets/item_card.dart';
 import 'package:zalada_flutter/modules/orders/widgets/item_order.dart';
 import 'package:zalada_flutter/modules/product/widgets/payment_add_to_cart.dart';
+import 'package:zalada_flutter/modules/profile/presenter/view_order_page.dart';
 import 'package:zalada_flutter/shared/colors/app_color.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 import 'package:zalada_flutter/shared/widgets/custom_app_bar.dart';
@@ -288,7 +289,9 @@ class _OrdersPageState extends State<OrdersPage> {
               pageController.jumpToPage(0);
             },
             onViewOrder: () {
-              context.pop();
+              context.push(ViewOrderPage.routePath,
+                extra: '1'
+              );
             },
           );
         },

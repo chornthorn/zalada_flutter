@@ -1,27 +1,116 @@
+import 'dart:ui';
+
 class ModelDetailImage {
   final String image;
 
   ModelDetailImage({required this.image});
 }
 
-final List<ModelDetailImage> modelDetailImage = [
+final List<ModelDetailImage> modelDetailColorGrey = [
   ModelDetailImage(
     image:
-        'https://iplanet.one/cdn/shop/files/Macbook_Pro_M3_Space_Gray_PDP_Image_Position_1__en-IN_823x.jpg?v=1698726352',
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-top-view-graphite.png?v=1',
   ),
   ModelDetailImage(
     image:
-        'https://sm.mashable.com/mashable_me/article/t/the-pricie/the-priciest-16-inch-macbook-pro-costs-an-eye-watering-7199_hnkm.jpg',
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-back-view-graphite.png?v=1',
   ),
   ModelDetailImage(
     image:
-        'https://cdn1.it4profit.com/AfrOrF3gWeDA6VOlDG4TzxMv39O7MXnF4CXpKUwGqRM/resize:fill:540/bg:f6f6f6/q:100/plain/s3://catalog-products/231103063646300535/231229150020808795.png@webp',
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-3-4-view-graphite.png?v=1',
   ),
   ModelDetailImage(
     image:
-        'https://www.dpreview.com/files/p/articles/9267805975/apple-macbookpro-m3-spaceblack.jpeg',
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-front-view-graphite.png?v=1',
   ),
   ModelDetailImage(
-    image: 'https://www.istores.sk/img.asp?stiid=106085',
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-top-side-view-graphite.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-side-view-graphite.png?v=1',
+  ),
+];
+final List<ModelDetailImage> modelDetailColorBlack = [
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-top-view-black.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-back-view-black.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-3-4-view-black.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-front-view-black.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-top-side-view-black.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-side-view-black.png?v=1',
+  ),
+];
+final List<ModelDetailImage> modelDetailColorWhite = [
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-top-view-pale-gray.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-back-view-pale-gray.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-3-4-view-pale-gray.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-front-view-pale-gray.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-top-side-view-pale-gray.png?v=1',
+  ),
+  ModelDetailImage(
+    image:
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-side-view-pale-gray.png?v=1',
+  ),
+];
+
+class ModelDetail {
+  final Color color;
+  final String nameColor;
+  final List<ModelDetailImage> image;
+
+  ModelDetail({
+    required this.color,
+    required this.image,
+    required this.nameColor,
+  });
+}
+
+final List<ModelDetail> modelDetail = [
+  ModelDetail(
+    color: Color(0xFFA0A0A0),
+    image: modelDetailColorGrey,
+    nameColor: 'Graphite',
+  ),
+  ModelDetail(
+    color: Color(0xFF000000),
+    image: modelDetailColorBlack,
+    nameColor: 'Black',
+  ),
+  ModelDetail(
+    color: Color(0xFFFFFFFF),
+    image: modelDetailColorWhite,
+    nameColor: 'Pale Gray',
   ),
 ];

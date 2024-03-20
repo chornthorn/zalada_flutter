@@ -51,11 +51,11 @@ class _AddToCartState extends State<AddToCart> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CarouselSlider.builder(
-              itemCount: modelDetailImage.length,
+              itemCount: modelDetailColorGrey.length,
               carouselController: carouselController,
               itemBuilder: (context, index, realIndex) {
                 return ImageItem(
-                  image: modelDetailImage[index].image,
+                  image: modelDetailColorGrey[index].image,
                 );
               },
               options: CarouselOptions(
@@ -82,7 +82,7 @@ class _AddToCartState extends State<AddToCart> {
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
-                itemCount: modelDetailImage.length,
+                itemCount: modelDetailColorGrey.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return GestureDetector(
@@ -104,7 +104,7 @@ class _AddToCartState extends State<AddToCart> {
                       ),
                       child: Image(
                         image: NetworkImage(
-                          modelDetailImage[index].image,
+                          modelDetailColorGrey[index].image,
                         ),
                         height: 40,
                         width: 40,
@@ -138,7 +138,7 @@ class _AddToCartState extends State<AddToCart> {
                         ),
                         padding: const EdgeInsets.all(AppSpacing.md),
                         child: Image.network(
-                          'https://iplanet.one/cdn/shop/files/Macbook_Pro_M3_Space_Gray_PDP_Image_Position_1__en-IN_823x.jpg?v=1698726352',
+                          'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-top-view-black.png?v=1',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -148,7 +148,7 @@ class _AddToCartState extends State<AddToCart> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Macbook Pro 15” 2019 - Intel core i7',
+                              'Logitech MX Master 3S',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall!

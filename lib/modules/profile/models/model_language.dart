@@ -17,6 +17,4 @@ List<ModelLanguage> listLanguage = [
     isSelect: true,
   ),
   ModelLanguage(name: 'Khmer', logo: '🇰🇭'),
-  ModelLanguage(name: 'Chinese', logo: '🇨🇳'),
-  ModelLanguage(name: 'Japanese', logo: '🇯🇵'),
 ];

@@ -173,10 +173,10 @@ final List<ProductWishlist> productWishlistLaptop = [
 
 final List<ProductWishlist> productWishlistPhone = [
   ProductWishlist(
-    title: 'Iphone 15 Pro Max 2021 - 512GB',
+    title: 'Logetech MX Master 3S Mouse',
     image:
-        'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-card-40-iphone15prohero-202309_FMT_WHH?wid=508&hei=472&fmt=p-jpg&qlt=95&.v=1693086369818',
-    salePrice: '1200',
+        'https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_2.0/d_transparent.gif/content/dam/logitech/en/products/mice/mx-master-3s/gallery/mx-master-3s-mouse-top-view-graphite.png?v=1',
+    salePrice: '125',
     type: 0,
   ),
   ProductWishlist(

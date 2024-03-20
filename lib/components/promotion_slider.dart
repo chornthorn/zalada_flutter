@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:zalada_flutter/modules/product/presenter/product_detail_page.dart';
+import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 
 class PromotionSlider extends StatefulWidget {
   const PromotionSlider({super.key});
@@ -14,92 +17,97 @@ class _PromotionSliderState extends State<PromotionSlider> {
       children: [
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color(0xff759BFD),
+            borderRadius: BorderRadius.circular(AppSpacing.md),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Theme.of(context).primaryColor,
+                Theme.of(context).primaryColor.withOpacity(0.5),
+              ],
+            ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 12,
+            horizontal: AppSpacing.md,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Summer Sale',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      'iWatch Series 6 44mm',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Text(
-                            'Get up to ',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            '50% off',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      ElevatedButton(
-                        onPressed: () {
-                          print('Shop now');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).primaryColor,
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          elevation: 0,
-                        ),
-                        child: Text(
-                          'Shop now',
+                      maxLines: 2,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Get up to ',
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          '50% off',
+                          style: TextStyle(
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  // Image
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.red,
+                      ],
                     ),
-                    child: Image(
-                      image: NetworkImage(
-                        'https://cdn.media.amplience.net/i/sd/23SEP0074-BA-home-tab-iphone',
+                    ElevatedButton(
+                      onPressed: () {
+                        context.push(ProductDetailPage.routePath);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.xlg,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            AppSpacing.xxlg,
+                          ),
+                        ),
+                        elevation: 0,
                       ),
-                      width: 120,
-                      height: 120,
+                      child: Text(
+                        'Shop now',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppSpacing.sm),
+                ),
+                child: Image(
+                  image: AssetImage(
+                    'assets/images/iwath.png',
                   ),
-                ],
+                  width: 140,
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
           ),
