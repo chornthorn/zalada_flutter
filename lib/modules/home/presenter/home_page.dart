@@ -103,11 +103,7 @@ class _HomePageState extends State<HomePage>
               SizedBox(height: AppSpacing.lg),
               SectionTitle(title: 'Categories'),
               SizedBox(height: AppSpacing.md),
-              MenuCategories(
-                onTab: () {
-                  context.push(SeeAllCategoriesPage.routePath);
-                },
-              ),
+              MenuCategories(),
               SectionTitle(
                 title: 'New Arrivals 🚀',
                 action: 'See all',

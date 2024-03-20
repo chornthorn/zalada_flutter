@@ -22,4 +22,5 @@ final List<Category> categories = [
   Category(name: 'HeadPhone', icon: PhosphorIcons.headphones()),
   Category(name: 'Mouses', icon: PhosphorIcons.mouse()),
   Category(name: 'Microphone', icon: PhosphorIcons.microphone()),
+  Category(name: 'Keyboard', icon: PhosphorIcons.keyboard()),
 ];

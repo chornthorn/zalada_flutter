@@ -85,7 +85,9 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: AppSpacing.lg),
             MyOrders(
               onTap: () {
-                context.push(ViewOrderPage.routePath);
+                context.push(ViewOrderPage.routePath,
+                  extra: '2'
+                );
               },
             ),
             Divider(

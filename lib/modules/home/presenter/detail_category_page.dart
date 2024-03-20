@@ -4,20 +4,22 @@ import 'package:zalada_flutter/modules/wishlist/widgets/product_card.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 import 'package:zalada_flutter/shared/widgets/custom_app_bar.dart';
 
-class SeeAllCategoriesPage extends StatefulWidget {
-  const SeeAllCategoriesPage({super.key});
+class DetailCategoryPage extends StatefulWidget {
+  const DetailCategoryPage({super.key, required this.title});
 
-  static const routePath = '/see-all-categories';
+  static const routePath = '/detail-category';
+
+  final String title;
 
   @override
-  State<SeeAllCategoriesPage> createState() => _SeeAllCategoriesPageState();
+  State<DetailCategoryPage> createState() => _DetailCategoryPageState();
 }
 
-class _SeeAllCategoriesPageState extends State<SeeAllCategoriesPage> {
+class _DetailCategoryPageState extends State<DetailCategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'New Arrivals 🚀'),
+      appBar: CustomAppBar(title: widget.title),
       body: SafeArea(
         child: GridView.builder(
           padding: const EdgeInsets.all(AppSpacing.lg),
@@ -63,5 +65,4 @@ class _SeeAllCategoriesPageState extends State<SeeAllCategoriesPage> {
       return 4;
     }
   }
-  
 }

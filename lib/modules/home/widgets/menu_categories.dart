@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:zalada_flutter/modules/home/presenter/detail_category_page.dart';
 import 'package:zalada_flutter/shared/colors/app_color.dart';
 import 'package:zalada_flutter/shared/models/category.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 
 class MenuCategories extends StatelessWidget {
-  const MenuCategories({
-    super.key,
-    this.onTab,
-  });
-
-  final VoidCallback? onTab;
+  const MenuCategories({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,12 @@ class MenuCategories extends StatelessWidget {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: onTab,
+            onTap: () {
+              context.push(
+                DetailCategoryPage.routePath,
+                extra: categories[index].name,
+              );
+            },
             child: Container(
               margin: EdgeInsets.only(
                 left: index == 0 ? 16 : 0,

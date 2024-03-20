@@ -2,18 +2,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:zalada_flutter/modules/authentication/widgets/label_text.dart';
 import 'package:zalada_flutter/modules/main/presenter/main_page.dart';
 import 'package:zalada_flutter/modules/orders/presenter/orders_page.dart';
 import 'package:zalada_flutter/modules/product/models/model_detail.dart';
 import 'package:zalada_flutter/modules/product/widgets/add_to_cart.dart';
-import 'package:zalada_flutter/modules/product/widgets/item_image.dart';
 import 'package:zalada_flutter/modules/wishlist/models/product_wishlist.dart';
 import 'package:zalada_flutter/modules/wishlist/widgets/product_card.dart';
 import 'package:zalada_flutter/shared/colors/app_color.dart';
 import 'package:zalada_flutter/shared/spacing/app_spacing.dart';
 import 'package:zalada_flutter/shared/widgets/custom_app_bar.dart';
-import 'package:zalada_flutter/shared/widgets/custom_text_form_field.dart';
 
 class ProductDetailPage extends StatefulWidget {
   const ProductDetailPage({super.key});
@@ -46,22 +43,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   int current = 0;
   int currentColor = 0;
-
-  //list color
-  List<Color> colors = [
-    AppColors.kPrimaryColor,
-    AppColors.kColorGray200,
-    AppColors.kColorGray300,
-    AppColors.kColorGray400,
-  ];
-
-  //list name color
-  List<String> nameColors = [
-    'Black',
-    'Gray',
-    'Silver',
-    'Gold',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +93,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   child: Column(
                     children: [
                       Text(
-                        "Macbook Pro 15” 2019 - Intel core i7",
+                        "MX Master 3S Wireless Mouse",
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               fontWeight: FontWeight.w600,
@@ -122,7 +103,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            '\$2,399',
+                            '\$109',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -131,7 +112,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           ),
                           const SizedBox(width: AppSpacing.xs),
                           Text(
-                            '\$2,999',
+                            '\$125',
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.normal,
@@ -145,20 +126,22 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ),
                 ),
                 CarouselSlider.builder(
-                  itemCount: modelDetailImage.length,
+                  itemCount: modelDetail[currentColor].image.length,
                   carouselController: carouselController,
                   itemBuilder: (context, index, realIndex) {
-                    return ImageItem(
-                      image: modelDetailImage[index].image,
+                    return Image(
+                      image: NetworkImage(
+                        modelDetail[currentColor].image[index].image,
+                      ),
                     );
                   },
                   options: CarouselOptions(
-                    height: 200,
+                    height: 210,
                     viewportFraction: 1,
                     enableInfiniteScroll: true,
-                    autoPlay: false,
-                    autoPlayInterval: Duration(seconds: 5),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 8),
+                    autoPlayAnimationDuration: Duration(milliseconds: 1000),
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enlargeCenterPage: true,
                     scrollDirection: Axis.horizontal,
@@ -176,7 +159,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
-                    itemCount: modelDetailImage.length,
+                    itemCount: modelDetail[currentColor].image.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return GestureDetector(
@@ -198,7 +181,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           ),
                           child: Image(
                             image: NetworkImage(
-                              modelDetailImage[index].image,
+                              modelDetail[currentColor].image[index].image,
                             ),
                             height: 40,
                             width: 40,
@@ -218,7 +201,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        nameColors[currentColor],
+                        modelDetail[currentColor].nameColor,
                         style:
                             Theme.of(context).textTheme.labelMedium!.copyWith(
                                   fontWeight: FontWeight.w600,
@@ -230,7 +213,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ...List.generate(
-                            colors.length,
+                            modelDetail.length,
                             (index) => GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -239,19 +222,22 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               },
                               child: Container(
                                 padding: EdgeInsets.all(AppSpacing.xxs),
+                                margin: const EdgeInsets.only(
+                                  right: AppSpacing.sm,
+                                ),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: currentColor == index
                                         ? AppColors.kPrimaryColor
-                                        : Colors.transparent,
+                                        : Colors.grey.withOpacity(0.5),
                                     width: 2,
                                   ),
                                 ),
                                 child: Container(
                                   padding: const EdgeInsets.all(AppSpacing.md),
                                   decoration: BoxDecoration(
-                                    color: colors[index],
+                                    color: modelDetail[index].color,
                                     shape: BoxShape.circle,
                                   ),
                                 ),
@@ -264,38 +250,38 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.md),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.lg,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      LabelText(label: 'Memory'),
-                      const SizedBox(height: AppSpacing.xs),
-                      CustomTextFieldForms(
-                        controller: memoryController,
-                        hintText: 'Select Memory',
-                        suffixIcon: PhosphorIconsRegular.caretDown,
-                        onTap: () {
-                          print('Select Memory');
-                        },
-                      ),
-                      const SizedBox(height: AppSpacing.md),
-                      LabelText(label: 'Storage'),
-                      const SizedBox(height: AppSpacing.xs),
-                      CustomTextFieldForms(
-                        controller: storageController,
-                        suffixIcon: PhosphorIconsRegular.caretDown,
-                        hintText: 'Select Storage',
-                        onTap: () {
-                          print('Select Storage');
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.md),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(
+                //     horizontal: AppSpacing.lg,
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       LabelText(label: 'Memory'),
+                //       const SizedBox(height: AppSpacing.xs),
+                //       CustomTextFieldForms(
+                //         controller: memoryController,
+                //         hintText: 'Select Memory',
+                //         suffixIcon: PhosphorIconsRegular.caretDown,
+                //         onTap: () {
+                //           print('Select Memory');
+                //         },
+                //       ),
+                //       const SizedBox(height: AppSpacing.md),
+                //       LabelText(label: 'Storage'),
+                //       const SizedBox(height: AppSpacing.xs),
+                //       CustomTextFieldForms(
+                //         controller: storageController,
+                //         suffixIcon: PhosphorIconsRegular.caretDown,
+                //         hintText: 'Select Storage',
+                //         onTap: () {
+                //           print('Select Storage');
+                //         },
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // const SizedBox(height: AppSpacing.md),
                 Divider(
                   color: AppColors.kColorGray200,
                   thickness: 4,
@@ -320,7 +306,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         children: [
                           Flexible(
                             child: Text(
-                              "New variant MacBook Pro 15 2018 Intel Core i7 gen 11 with Touch Bar ID is various versions have evolved over the years.",
+                              "Introducing Quiet Clicks – create, make and do with the same click feel, but less noise. Quiet Clicks deliver satisfying, soft tactile feedback with 90% less click noise14Compared to MX Master 3, MX Master 3S has 90% less Sound Power Level left and right click, measured at 1m..",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -328,7 +314,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                     fontWeight: FontWeight.w400,
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                              maxLines: 3,
+                              maxLines: 10,
                             ),
                           ),
                         ],
@@ -396,14 +382,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               ),
               decoration: BoxDecoration(
                 color: AppColors.kWhiteColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.kColorGray200,
-                    spreadRadius: 1,
-                    blurRadius: 6,
-                    offset: const Offset(0, -3),
-                  ),
-                ],
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
